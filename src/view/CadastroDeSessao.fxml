@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.SessaoController">
+   <children>
+      <AnchorPane prefHeight="38.0" prefWidth="750.0" style="-fx-background-color: #c83737ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="btExcluir" layoutX="605.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleExcluir" prefWidth="60.0" style="-fx-background-color: #FA8072;" text="Excluir" textFill="WHITE" AnchorPane.rightAnchor="85.0" AnchorPane.topAnchor="5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btLimpar" layoutX="535.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleLimpar" prefWidth="60.0" style="-fx-background-color: #FA8072;" text="Limpar" textFill="WHITE" AnchorPane.rightAnchor="155.0" AnchorPane.topAnchor="5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btSalvar" layoutX="465.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleSalvar" prefWidth="60.0" style="-fx-background-color: #FA8072;" text="Salvar" textFill="WHITE" AnchorPane.rightAnchor="225.0" AnchorPane.topAnchor="5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btAlterar" layoutX="675.0" layoutY="5.0" mnemonicParsing="false" onAction="#handleAlterar" prefWidth="60.0" style="-fx-background-color: #FA8072;" text="Alterar" textFill="WHITE" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <VBox layoutY="40.0" spacing="20.0" AnchorPane.bottomAnchor="385.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <Label text="Título do Filme:">
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="62.0" text="Sala:">
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="62.0" text="Data da Exibição:">
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Label>
+            <Label layoutX="25.0" layoutY="62.0" text="Horário de Exibição:">
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets left="15.0" top="15.0" />
+         </padding>
+      </VBox>
+      <VBox layoutX="160.0" layoutY="40.0" prefHeight="175.0" prefWidth="590.0" spacing="11.0" AnchorPane.bottomAnchor="385.0" AnchorPane.leftAnchor="160.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="40.0">
+         <children>
+            <ComboBox fx:id="cbTituloFilme" prefHeight="25.0" prefWidth="320.0" />
+            <ComboBox fx:id="cbSala" prefHeight="25.0" prefWidth="320.0" />
+            <DatePicker fx:id="dpDataExibicao" prefHeight="25.0" prefWidth="150.0" />
+            <HBox prefHeight="23.0" prefWidth="320.0" spacing="20.0">
+               <children>
+                  <TextField fx:id="tfHoraInicio" prefHeight="25.0" prefWidth="150.0" promptText="Horário de Início" />
+                  <TextField fx:id="tfHoraTermino" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="150.0" promptText="Horário de Término" />
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets right="15.0" top="15.0" />
+         </padding>
+      </VBox>
+      <HBox alignment="CENTER_RIGHT" layoutX="225.0" layoutY="411.0" prefHeight="25.0" prefWidth="135.0" spacing="15.0" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <padding>
+            <Insets bottom="15.0" right="15.0" />
+         </padding>
+      </HBox>
+      <AnchorPane layoutY="75.0" prefHeight="186.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="290.0">
+         <children>
+            <AnchorPane prefHeight="38.0" prefWidth="750.0" style="-fx-background-color: #c83737ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+               <children>
+                  <TextField fx:id="tfBuscaSessao" layoutX="438.0" layoutY="7.0" prefHeight="25.0" prefWidth="250.0" AnchorPane.rightAnchor="65.0" />
+                  <Button fx:id="btBuscarSessao" layoutX="644.0" layoutY="2.0" mnemonicParsing="false" onAction="#handleBuscarSessao" prefHeight="35.0" prefWidth="35.0" style="-fx-background-color: #c83737ff;" AnchorPane.rightAnchor="15.0">
+                     <graphic>
+                        <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@iconeBusca.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </AnchorPane>
+            <TableView fx:id="tvSessao" layoutX="237.0" layoutY="47.0" onMouseClicked="#handleOnMouseClicked" prefHeight="224.0" prefWidth="694.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
+               <columns>
+                  <TableColumn fx:id="tcId" prefWidth="60.0" text="ID" />
+                  <TableColumn fx:id="tcNomeFilme" prefWidth="258.0" text="Nome do Filme" />
+                  <TableColumn fx:id="tcNomeSala" prefWidth="168.0" text="Nome da Sala" />
+                  <TableColumn fx:id="tcHoraInicio" prefWidth="132.0" text="Hora de Início" />
+                  <TableColumn fx:id="tcHoraTermino" minWidth="0.0" prefWidth="131.0" text="Hora de Término" />
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
