@@ -26,9 +26,11 @@ import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 import model.Sala;
+import model.Sessao;
 import model.StatusSala;
 import model.TipoSala;
 import repository.SalaRepository;
+import repository.SessaoRepository;
 
 public class SalaController extends Controller<Sala> implements Initializable {
 
@@ -257,6 +259,14 @@ public class SalaController extends Controller<Sala> implements Initializable {
 			}
 		}
 	}
+	
+	public void atualizarTabela()
+    {
+    	SalaRepository repository = new SalaRepository(JPAFactory.getEntityManager());
+		List<Sala> lista = repository.getListNomesSalas();
+		tvSalas.setItems(FXCollections.observableList(lista));
+		atualizarBotoes();
+    }
 
 	public Stage getStage() {
 		return stage;

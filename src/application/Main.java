@@ -64,7 +64,7 @@ public class Main extends Application {// UniCine
 	public void start(Stage primaryStage) throws Exception {
 
 		root = FXMLLoader.load(getClass().getResource("/view/TemplateCrud.fxml"));
-		Parent clienteView = FXMLLoader.load(getClass().getResource("/view/CadastroDeFilme.fxml"));
+		Parent clienteView = FXMLLoader.load(getClass().getResource("/view/BemVindo.fxml"));
 
 		// adicionando a tela inicial no template (parte central)
 		ScrollPane scroll = (ScrollPane) root.getChildren().get(2);

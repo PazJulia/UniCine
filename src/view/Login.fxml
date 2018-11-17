@@ -22,7 +22,6 @@
             <Image url="@iconeFBranco.png" />
          </image>
       </ImageView>
-      <TextField fx:id="tfUsuario" layoutX="75.0" layoutY="166.0" prefHeight="26.0" prefWidth="229.0" />
       <Label layoutX="75.0" layoutY="145.0" text="Usuário:" textFill="#556683">
          <font>
             <Font name="System Bold" size="13.0" />
@@ -49,6 +48,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <PasswordField fx:id="tfSenha" layoutX="75.0" layoutY="228.0" prefHeight="26.0" prefWidth="229.0" />
+      <TextField fx:id="tfCpf" layoutX="75.0" layoutY="164.0" prefHeight="25.0" prefWidth="228.0" />
+      <PasswordField fx:id="pfSenhaUser" layoutX="75.0" layoutY="226.0" prefHeight="25.0" prefWidth="228.0" />
    </children>
 </AnchorPane>

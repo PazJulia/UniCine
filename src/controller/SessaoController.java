@@ -4,6 +4,7 @@ import java.net.URL;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -23,9 +24,9 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.VBox;
 import model.Filme;
 import model.Sala;
 import model.Sessao;
@@ -63,19 +64,22 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     private TableView<Sessao> tvSessao;
 
     @FXML
-    private TableColumn<Sessao, String> tcId;
+    private TableColumn<Sessao, Integer> tcId;
 
     @FXML
-    private TableColumn<Sessao, String> tcNomeFilme;
+    private TableColumn<Sessao, Integer> tcNomeFilme;
 
     @FXML
-    private TableColumn<Sessao, String> tcNomeSala;
+    private TableColumn<Sessao, Integer> tcNomeSala;
+    
+    @FXML
+    private TableColumn<Sessao, LocalDate> tcDataExibicao;
 
     @FXML
-    private TableColumn<Sessao, String> tcHoraInicio;
+    private TableColumn<Sessao, Date> tcHoraInicio;
 
     @FXML
-    private TableColumn<Sessao, String> tcHoraTermino;
+    private TableColumn<Sessao, Date> tcHoraTermino;
 
     @FXML
     private Button btLimpar;
@@ -91,6 +95,12 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
   
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+    	tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	tcNomeFilme.setCellValueFactory(new PropertyValueFactory<>("filme"));
+    	tcNomeSala.setCellValueFactory(new PropertyValueFactory<>("sala"));
+    	tcDataExibicao.setCellValueFactory(new PropertyValueFactory<>("dataExibicao"));
+    	tcHoraInicio.setCellValueFactory(new PropertyValueFactory<>("horaInicio"));
+    	tcHoraTermino.setCellValueFactory(new PropertyValueFactory<>("horaTermino"));
     	
     	carregarComboBoxFilme();
     	carregarComboBoxSala();
@@ -98,8 +108,8 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
 
     @FXML
     void handleLimpar(ActionEvent event) {
-		cbTituloFilme.getSelectionModel().clearSelection();
-		cbSala.getSelectionModel().clearSelection();
+		cbTituloFilme.setValue(null);
+		cbSala.setValue(null);
 		tfHoraInicio.setText("");
 		tfHoraTermino.setText("");
 		dpDataExibicao.setValue(null);
@@ -112,22 +122,6 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     	getSessao().setFilme(cbTituloFilme.getValue());
     	getSessao().setSala(cbSala.getValue());
     	getSessao().setDataExibicao(dpDataExibicao.getValue());
-    	
-    	/*//Convertendo String para o tipo Time (Hora Inicio)
-    	String strHora = tfHoraInicio.getText().toString();
-    	SimpleDateFormat formatador = new SimpleDateFormat("HH:mm");
-    	Date data = formatador.parse(strHora);
-    	Time time = new Time(data.getTime());
- 
-    	getSessao().setHoraInicio(time);
-    	
-    	//Convertendo String para o tipo Time (Hora Termino)
-    	strHora = tfHoraTermino.getText().toString();
-    	data = formatador.parse(strHora);
-    	time = new Time(data.getTime());*/
-    	
-//    	getSessao().setHoraTermino(time);
-    	
     	stringToTime();
 
     	super.save(getSessao());
@@ -135,6 +129,8 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
 		handleLimpar(event);
 		
 		atualizarBotoes();
+		
+		atualizarTabela();
     }
     
 
@@ -155,6 +151,8 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     			}
     			
     			atualizarBotoes();
+    			
+    			atualizarTabela();
     }
     
     @FXML
@@ -170,6 +168,9 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
 		handleLimpar(event);
 		
 		atualizarBotoes();
+		
+		atualizarTabela();
+		
     }
     
 
@@ -181,10 +182,13 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     		if (event.getClickCount()==2) {
 				//preenche
     			sessao = tvSessao.getSelectionModel().getSelectedItem();
-    			cbTituloFilme.setValue(getFilme());
-    			cbSala.setValue(getSala());
+    			cbTituloFilme.setValue(getSessao().getFilme());
+    			cbSala.setValue(getSessao().getSala());
     			dpDataExibicao.setValue(getSessao().getDataExibicao());
-//    			tfHoraInicio.setText(getSessao().getHoraInicio());
+    			tfHoraInicio.setText(getSessao().getHoraInicio().toString());
+    			tfHoraTermino.setText(getSessao().getHoraTermino().toString());
+    			
+    			atualizarBotoes();
 			}
 		}
     }
@@ -193,7 +197,7 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     @FXML
     void handleBuscarSessao(ActionEvent event) {
     	SessaoRepository repository = new SessaoRepository(JPAFactory.getEntityManager());
-		List<Sessao> lista = repository.getSessao(tfBuscaSessao.getText());
+		List<Sessao> lista = repository.getListSessoes();
 
 		if (lista.isEmpty()) {
 			Alert alerta = new Alert(AlertType.INFORMATION);
@@ -243,6 +247,14 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     	time = new Time(data.getTime());
     	
     	getSessao().setHoraTermino(time);
+    }
+    
+    public void atualizarTabela()
+    {
+    	SessaoRepository repository = new SessaoRepository(JPAFactory.getEntityManager());
+		List<Sessao> lista = repository.getListSessoes();
+		tvSessao.setItems(FXCollections.observableList(lista));
+		atualizarBotoes();
     }
 
 	public Sessao getSessao() {

@@ -124,10 +124,11 @@
             <TableView fx:id="tvSessao" layoutX="237.0" layoutY="47.0" onMouseClicked="#handleOnMouseClicked" prefHeight="224.0" prefWidth="694.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="37.0">
                <columns>
                   <TableColumn fx:id="tcId" prefWidth="60.0" text="ID" />
-                  <TableColumn fx:id="tcNomeFilme" prefWidth="258.0" text="Nome do Filme" />
-                  <TableColumn fx:id="tcNomeSala" prefWidth="168.0" text="Nome da Sala" />
-                  <TableColumn fx:id="tcHoraInicio" prefWidth="132.0" text="Hora de Início" />
-                  <TableColumn fx:id="tcHoraTermino" minWidth="0.0" prefWidth="131.0" text="Hora de Término" />
+                  <TableColumn fx:id="tcNomeFilme" prefWidth="213.0" text="Nome do Filme" />
+                  <TableColumn fx:id="tcNomeSala" prefWidth="166.0" text="Nome da Sala" />
+                  <TableColumn fx:id="tcDataExibicao" prefWidth="105.0" text="Data" />
+                  <TableColumn fx:id="tcHoraInicio" prefWidth="104.0" text="Hora de Início" />
+                  <TableColumn fx:id="tcHoraTermino" minWidth="0.0" prefWidth="101.0" text="Hora de Término" />
                </columns>
             </TableView>
          </children>

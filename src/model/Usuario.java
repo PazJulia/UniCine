@@ -1,17 +1,16 @@
 package model;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 
 @Entity
-public class Usuario extends DefaultEntity<Usuario>{
+public class Usuario extends DefaultEntity<Usuario> implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -6088560814082665700L;
 	
 	private String nome;
-	private String login;
+	private String cpf;
 	private String senha;
 	private Perfil perfil;
 	public String getNome() {
@@ -20,12 +19,7 @@ public class Usuario extends DefaultEntity<Usuario>{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getLogin() {
-		return login;
-	}
-	public void setLogin(String login) {
-		this.login = login;
-	}
+	
 	public String getSenha() {
 		return senha;
 	}
@@ -37,5 +31,11 @@ public class Usuario extends DefaultEntity<Usuario>{
 	}
 	public void setPerfil(Perfil perfil) {
 		this.perfil = perfil;
+	}
+	public String getCpf() {
+		return cpf;
+	}
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 }

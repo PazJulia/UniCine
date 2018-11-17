@@ -22,72 +22,65 @@ import javafx.stage.StageStyle;
 import model.Usuario;
 import repository.UsuarioRepository;
 
-public class LoginController extends Controller implements Initializable
-{
-	@FXML
-	private static TextField tfUsuario;
+public class LoginController extends Controller implements Initializable {
+	int tentativa = 3;
 	
+    @FXML
+    private TextField tfCpf;
+    
+    @FXML
+    private PasswordField pfSenhaUser;
+
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+
+	}
+
 	@FXML
-	private static PasswordField tfSenha;
+	void handleCancelar(ActionEvent event) {
+		System.exit(-1);
+	}
 
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-    	
-    }
-
-    @FXML
-    void handleCancelar(ActionEvent event) {
-    	System.exit(-1);
-    }
-
-    @FXML
+	@FXML
     void handleAcessar(ActionEvent event) throws IOException {
 //    	retornou um usuario
 //    	Usuario usuario = new Usuario();
 //    	usuario.setNome("Joao da Silva");
 //    	usuario.setPerfil(Perfil.CADASTRO);
 //    	Controller.setUsuarioLogado(usuario);
-    	int i = 0;
-
-		//while (i <= 10) {
-			String use = "123";
-    		String sen = "123";
-    		
-    		System.out.println("#########" + tfUsuario.getText());
-
-			//verificaLogin(tfUsuario.getText(), tfSenha.getText());
-	    	UsuarioRepository repository = new UsuarioRepository(JPAFactory.getEntityManager());
-	    	List<Usuario> lista = repository.getUsuarioLogado(tfUsuario.getText(), tfSenha.getText());
-	    	
-			if(!lista.isEmpty()) {
-				//System.out.println("############### - " + lista.get(0).getNome().toString());
-				//System.exit(0);
-				System.out.println("#########" + lista.get(0).getLogin());
-
-			}
-			
-			/*if(!lista.isEmpty()) {
-				i++;
-				if(i==3) {
-					System.exit(0);
-				}
-			}else {
-				break;
-			}
-*/
-		//}
-        	
+		System.out.println("#########Usuário: " + tfCpf.getText() + " - Senha: " + pfSenhaUser.getText());
     	
-    	
+    	 UsuarioRepository repository = new UsuarioRepository(JPAFactory.getEntityManager());
+    	 List<Usuario> usuario = repository.getLogin(tfCpf.getText(), pfSenhaUser.getText());
+
+    	 if (!usuario.isEmpty()) {
+
+	    	 for (Usuario lista : usuario){
+		    	 Usuario usuarioteste = lista;
+		    	 Controller.setUsuarioLogado(usuarioteste);
+	    	 }
+		    Button button = (Button) event.getSource();
+		    Stage stage = (Stage) button.getScene().getWindow();
+		    stage.close();
+
+    	 }else{
+	    	 tentativa--;
+	
+	    	 if(tentativa != 0)
+	    		 System.out.println("Você tem mais " + tentativa + " tentativa");
+	    	 else if (tentativa == 0)
+	    		 System.exit(-1);
+    	 }
 //    	Button button = (Button) event.getSource();
 //    	Stage stage = (Stage) button.getScene().getWindow();
 //    	stage.close();
     }
-    
-    public List<Usuario> verificaLogin(String login, String senha) {
-    	UsuarioRepository repository = new UsuarioRepository(JPAFactory.getEntityManager());
-    	List<Usuario> lista = repository.getUsuarioLogado(login, senha);
-    	
-    	return lista;
-    }
+
+	public List<Usuario> verificaLogin(String login, String senha) {
+		UsuarioRepository repository = new UsuarioRepository(JPAFactory.getEntityManager());
+		List<Usuario> lista = repository.getUsuarioLogado(login, senha);
+
+		return lista;
+	}
 }

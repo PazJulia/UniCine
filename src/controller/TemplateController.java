@@ -35,9 +35,10 @@ public class TemplateController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 
 		// abrindo a tela de login
-		//abrirTelaLogin();
+		abrirTelaLogin();
 		
-		titulo.setText("CADASTRO DE FILME");
+		titulo.setText("Bem Vindo");
+		
 	}
 
 	private void abrirTelaLogin() {
@@ -57,7 +58,7 @@ public class TemplateController implements Initializable {
 		
 
 	}
-
+	
 	@FXML
 	void HandleCadastroFilme(ActionEvent event) throws IOException {
 		Main.trocaTela(1);
