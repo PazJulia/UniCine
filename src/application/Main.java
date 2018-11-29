@@ -47,6 +47,8 @@ public class Main extends Application {// UniCine
 			clienteView = FXMLLoader.load(Main.class.getResource("/view/CadastroDeSala.fxml"));
 		} else if (numero == 3) {
 			clienteView = FXMLLoader.load(Main.class.getResource("/view/CadastroDeSessao.fxml"));
+		} else if (numero == 4) {
+			clienteView = FXMLLoader.load(Main.class.getResource("/view/CadastroUsuario.fxml"));
 		}
 
 		// adicionando a tela inicial no template (parte central)

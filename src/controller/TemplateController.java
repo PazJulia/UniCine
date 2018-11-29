@@ -79,31 +79,9 @@ public class TemplateController implements Initializable {
 	}
 
 	@FXML
-	void HandleOnMouseClickedEditarFilme(MouseEvent event) throws IOException {
-
-		EditarFilmeController listagem = EditarFilmeListControllerFactory.getInstance();
-		listagem.abrir();
-
-		setFilme(listagem.getFilmeSelecionado());
-
-//		tfNome.setText(getCidade().getNome());
-//		tfEstado.setText(getCidade().getEstado());
-//		tfPais.setText(getCidade().getPais());
-
-	}
-
-	@FXML
-	void HandleOnMouseClickedEditarSala(MouseEvent event) throws IOException {
-
-		EditarSalaController listagem = EditarSalaListControllerFactory.getInstance();
-		listagem.abrir();
-
-		setSala(listagem.getSalaSelecionada());
-
-//		tfNome.setText(getCidade().getNome());
-//		tfEstado.setText(getCidade().getEstado());
-//		tfPais.setText(getCidade().getPais());
-
+	void HandleCadastroUsuario(ActionEvent event) throws IOException {
+		Main.trocaTela(4);
+		titulo.setText("CADASTRO DE USUÁRIO");
 	}
 
 	public Filme getfilme() {
