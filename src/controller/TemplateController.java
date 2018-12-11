@@ -50,6 +50,8 @@ public class TemplateController implements Initializable {
 			stage.setScene(scene);
 			stage.initModality(Modality.APPLICATION_MODAL);
 			stage.showAndWait();
+			if (Controller.getUsuarioLogado() == null) 
+				System.exit(-1);
 		}
 
 		catch (IOException e1) {
@@ -82,6 +84,12 @@ public class TemplateController implements Initializable {
 	void HandleCadastroUsuario(ActionEvent event) throws IOException {
 		Main.trocaTela(4);
 		titulo.setText("CADASTRO DE USUÁRIO");
+	}
+	
+	@FXML
+	void HandleVenda(ActionEvent event) throws IOException {
+		Main.trocaTela(5);
+		titulo.setText("Venda");
 	}
 
 	public Filme getfilme() {

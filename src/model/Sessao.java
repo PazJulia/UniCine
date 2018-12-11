@@ -32,12 +32,6 @@ public class Sessao extends DefaultEntity<Sessao>{
 	
 	private Time horaTermino;
 	
-//	public void setCidadNatal(Cidade cidadNatal) {
-//		this.cidadNatal = cidadNatal;
-//	}
-
-
-
 
 	public LocalDate getDataExibicao() {
 		return dataExibicao;

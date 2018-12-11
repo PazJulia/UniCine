@@ -17,7 +17,7 @@
    <top>
       <AnchorPane prefHeight="67.0" prefWidth="600.0" style="-fx-background-color: FFFFFF;" BorderPane.alignment="CENTER">
          <children>
-            <HBox layoutY="-1.0" prefHeight="70.0" prefWidth="712.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <HBox layoutY="-1.0" prefHeight="70.0" prefWidth="413.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="299.0" AnchorPane.topAnchor="0.0">
                <children>
                   <AnchorPane prefHeight="70.0" prefWidth="200.0" style="-fx-background-color: #FA8072;">
                      <children>
@@ -28,7 +28,7 @@
                         </ImageView>
                      </children>
                   </AnchorPane>
-                  <AnchorPane>
+                  <AnchorPane prefHeight="64.0" prefWidth="189.0">
                      <children>
                         <Label fx:id="titulo" contentDisplay="CENTER" layoutX="20.0" layoutY="29.0" text="Administrador" textAlignment="CENTER" textFill="#686868" textOverrun="CLIP" AnchorPane.leftAnchor="20.0">
                            <font>
@@ -39,6 +39,21 @@
                   </AnchorPane>
                </children>
             </HBox>
+            <Button fx:id="btBloquear" layoutX="645.0" layoutY="23.0" minWidth="46.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="46.0" style="-fx-background-color: white;" textFill="WHITE" AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="13.0">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@iconeBloquear.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </top>
@@ -70,6 +85,14 @@
                </cursor>
             </Button>
             <Button layoutX="10.0" layoutY="154.0" mnemonicParsing="false" onAction="#HandleCadastroUsuario" prefHeight="32.0" prefWidth="226.0" style="-fx-background-color: #c83737ff;" text="Cadastro de Usuário" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button layoutX="10.0" layoutY="216.0" mnemonicParsing="false" onAction="#HandleVenda" prefHeight="32.0" prefWidth="226.0" style="-fx-background-color: #c83737ff;" text="Teste Venda" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Black" size="12.0" />
                </font>

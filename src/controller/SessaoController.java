@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
+import application.Util;
 import factory.JPAFactory;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -124,13 +125,21 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     	getSessao().setDataExibicao(dpDataExibicao.getValue());
     	stringToTime();
 
-    	super.save(getSessao());
-
-		handleLimpar(event);
-		
-		atualizarBotoes();
-		
-		atualizarTabela();
+    	SessaoRepository repo = new SessaoRepository(JPAFactory.getEntityManager());
+    	boolean sessaoDisponivel = repo.existeSessaoDisponivel(
+    			getSessao().getSala().getId(), getSessao().getDataExibicao(), getSessao().getHoraInicio());
+    	
+    	if (sessaoDisponivel) {
+    		super.save(getSessao());
+	
+			handleLimpar(event);
+			
+			atualizarBotoes();
+			
+			atualizarTabela();
+    	} else {
+    		Util.errorAlert("Exitem sessões ja cadastradas nesse horário.").show(); 
+    	}
     }
     
 
@@ -197,7 +206,7 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     @FXML
     void handleBuscarSessao(ActionEvent event) {
     	SessaoRepository repository = new SessaoRepository(JPAFactory.getEntityManager());
-		List<Sessao> lista = repository.getListSessoes();
+		List<Sessao> lista = repository.getListSessoes(filme);
 
 		if (lista.isEmpty()) {
 			Alert alerta = new Alert(AlertType.INFORMATION);
@@ -252,10 +261,11 @@ public class SessaoController extends Controller<Sessao> implements Initializabl
     public void atualizarTabela()
     {
     	SessaoRepository repository = new SessaoRepository(JPAFactory.getEntityManager());
-		List<Sessao> lista = repository.getListSessoes();
+		List<Sessao> lista = repository.getListSessoes(filme);
 		tvSessao.setItems(FXCollections.observableList(lista));
 		atualizarBotoes();
     }
+    
 
 	public Sessao getSessao() {
 		if (sessao == null)

@@ -1,6 +1,10 @@
 package repository;
 
+import java.sql.Timestamp;
+import java.time.LocalDate;
+
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import model.DefaultEntity;
 
@@ -28,5 +32,15 @@ public class Repository <T extends DefaultEntity<? super T>> {
 
 	public void setEntityManager(EntityManager entityManager) {
 		this.entityManager = entityManager;
+	}
+	
+	public LocalDate dataDoBanco() {
+		Query query = getEntityManager()
+				.createNativeQuery("SELECT "
+						   + " now() ");
+		
+		Timestamp data = (Timestamp) query.getSingleResult();
+		
+		return data.toLocalDateTime().toLocalDate();
 	}
 }

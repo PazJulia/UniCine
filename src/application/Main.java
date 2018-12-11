@@ -41,6 +41,8 @@ public class Main extends Application {// UniCine
 	public static void trocaTela(int numero) throws IOException {
 		Parent clienteView = null;
 
+		clienteView = FXMLLoader.load(Main.class.getResource("/view/CadastroDeFilme.fxml"));
+		
 		if (numero == 1) {
 			clienteView = FXMLLoader.load(Main.class.getResource("/view/CadastroDeFilme.fxml"));
 		} else if (numero == 2) {
@@ -49,7 +51,10 @@ public class Main extends Application {// UniCine
 			clienteView = FXMLLoader.load(Main.class.getResource("/view/CadastroDeSessao.fxml"));
 		} else if (numero == 4) {
 			clienteView = FXMLLoader.load(Main.class.getResource("/view/CadastroUsuario.fxml"));
+		} else if (numero == 5) {
+			clienteView = FXMLLoader.load(Main.class.getResource("/view/EcolherFilme.fxml"));
 		}
+		
 
 		// adicionando a tela inicial no template (parte central)
 		ScrollPane scroll = (ScrollPane) root.getChildren().get(2);
@@ -65,6 +70,7 @@ public class Main extends Application {// UniCine
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 
+		
 		root = FXMLLoader.load(getClass().getResource("/view/TemplateCrud.fxml"));
 		Parent clienteView = FXMLLoader.load(getClass().getResource("/view/BemVindo.fxml"));
 

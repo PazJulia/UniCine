@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import application.Main;
+import application.Util;
 import factory.JPAFactory;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -34,7 +35,7 @@ public class LoginController extends Controller implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-
+		Controller.setUsuarioLogado(null);
 	}
 
 	@FXML
@@ -53,6 +54,7 @@ public class LoginController extends Controller implements Initializable {
     	
     	 UsuarioRepository repository = new UsuarioRepository(JPAFactory.getEntityManager());
     	 List<Usuario> usuario = repository.getLogin(tfCpf.getText(), pfSenhaUser.getText());
+//    	  List<Usuario> usuario = repository.getLogin(tfCpf.getText(), Util.encrypt(pfSenhaUser.getText().trim()));
 
     	 if (!usuario.isEmpty()) {
 
