@@ -15,7 +15,7 @@ public class Compra extends DefaultEntity<Compra>{
 	@JoinColumn(name = "idSessao")
 	private Sessao idSessao;
 	private TipoIngresso tipoIngresso;
-	private int poltrona;
+	private int poltrona = 50;
 	
 	
 	public Sessao getIdSessao() {

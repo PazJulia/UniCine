@@ -45,26 +45,28 @@ public class LoginController extends Controller implements Initializable {
 
 	@FXML
     void handleAcessar(ActionEvent event) throws IOException {
-//    	retornou um usuario
-//    	Usuario usuario = new Usuario();
-//    	usuario.setNome("Joao da Silva");
-//    	usuario.setPerfil(Perfil.CADASTRO);
-//    	Controller.setUsuarioLogado(usuario);
-		System.out.println("#########Usuário: " + tfCpf.getText() + " - Senha: " + pfSenhaUser.getText());
+
+		System.out.println("#########Usuário: " + tfCpf.getText() + " - Senha: " + Util.encrypt(pfSenhaUser.getText().trim()));
     	
     	 UsuarioRepository repository = new UsuarioRepository(JPAFactory.getEntityManager());
-    	 List<Usuario> usuario = repository.getLogin(tfCpf.getText(), pfSenhaUser.getText());
-//    	  List<Usuario> usuario = repository.getLogin(tfCpf.getText(), Util.encrypt(pfSenhaUser.getText().trim()));
+    	 //List<Usuario> usuario = repository.getLogin(tfCpf.getText(), pfSenhaUser.getText());
+    	 //List<Usuario> usuario = repository.getLogin(tfCpf.getText(), Util.encrypt(pfSenhaUser.getText().trim()));
+    	 
+    	 Usuario usuario = repository.getUsuario(tfCpf.getText(), Util.encrypt(pfSenhaUser.getText().trim()));
 
-    	 if (!usuario.isEmpty()) {
+    	 if (usuario != null) {
 
-	    	 for (Usuario lista : usuario){
+	    	 /*for (Usuario lista : usuario){
 		    	 Usuario usuarioteste = lista;
 		    	 Controller.setUsuarioLogado(usuarioteste);
-	    	 }
+	    	 }*/
+    		 Controller.setUsuarioLogado(usuario);
+    		 
 		    Button button = (Button) event.getSource();
 		    Stage stage = (Stage) button.getScene().getWindow();
 		    stage.close();
+		    
+		    System.out.println("#########");
 
     	 }else{
 	    	 tentativa--;
@@ -73,6 +75,8 @@ public class LoginController extends Controller implements Initializable {
 	    		 System.out.println("Você tem mais " + tentativa + " tentativa");
 	    	 else if (tentativa == 0)
 	    		 System.exit(-1);
+	    	 
+	    	 System.out.println("#########´´´´´´´´´´´´´´´´´´´´");
     	 }
 //    	Button button = (Button) event.getSource();
 //    	Stage stage = (Stage) button.getScene().getWindow();

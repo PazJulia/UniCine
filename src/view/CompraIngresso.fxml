@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EscolherFilmeController">
+<AnchorPane prefHeight="860.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CompraController">
    <children>
       <AnchorPane prefHeight="38.0" prefWidth="750.0" style="-fx-background-color: e3f1f6ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -46,7 +46,7 @@
             <TableColumn fx:id="tcQtPoltronas" prefWidth="100.0" text="Qtd. Poltronas" />
          </columns>
       </TableView>
-      <VBox alignment="TOP_CENTER" prefHeight="309.0" prefWidth="750.0" spacing="20.0" AnchorPane.bottomAnchor="229.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="301.0">
+      <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="255.0" prefHeight="353.0" prefWidth="750.0" spacing="20.0" AnchorPane.bottomAnchor="252.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
          <children>
             <Label text="Tipo de Ingresso:">
                <font>
@@ -71,39 +71,36 @@
             </Label>
             <AnchorPane prefHeight="22.0" prefWidth="750.0">
                <children>
-                  <HBox alignment="CENTER" layoutX="-3.0" prefHeight="19.0" prefWidth="750.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <HBox alignment="CENTER" layoutX="-3.0" prefHeight="19.0" prefWidth="750.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <TextField />
+                        <Button fx:id="btConfirmar" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #00FA9A;" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font name="Segoe UI Black" size="12.0" />
+                           </font>
+                           <graphic>
+                              <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@check.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
             <Separator layoutX="10.0" layoutY="105.0" prefWidth="200.0" />
-            <HBox alignment="CENTER" prefHeight="53.0" prefWidth="750.0" spacing="10.0">
+            <Label text="Total a pagar:">
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="29.0" prefWidth="750.0" spacing="10.0">
                <children>
-                  <Button fx:id="btConfirmar" layoutX="358.0" layoutY="24.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #00FA9A;" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Segoe UI Black" size="12.0" />
-                     </font>
-                     <graphic>
-                        <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@check.png" />
-                           </image>
-                        </ImageView>
-                     </graphic>
-                  </Button>
-                  <Button fx:id="btAdd" layoutX="347.0" layoutY="48.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="99.0" style="-fx-background-color: #87CEEB;" text="Comprar mais" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                     <font>
-                        <Font name="Segoe UI Black" size="12.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="btPagar" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #87CEEB;" text="Pagar" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
@@ -127,7 +124,7 @@
             <Insets top="20.0" />
          </padding>
       </VBox>
-      <TableView fx:id="tvIntensCompra" prefHeight="159.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="680.0">
+      <TableView fx:id="tvIntensCompra" layoutY="669.0" prefHeight="108.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="680.0">
          <columns>
             <TableColumn fx:id="tcIdCompra" prefWidth="75.0" text="ID Compra" />
             <TableColumn fx:id="tcFilmeCompra" prefWidth="285.0" text="Filme" />

@@ -26,7 +26,7 @@ import model.Sessao;
 import model.TipoIngresso;
 import repository.SessaoRepository;
 
-public class EscolherFilmeController implements Initializable{
+public class CompraController implements Initializable{
 
 	private Sessao sessao;
 	

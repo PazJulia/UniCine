@@ -65,12 +65,6 @@ public class FilmeController extends Controller<Filme> implements Initializable 
 	private TextField tfDescricao;
 
 	@FXML
-	private DatePicker dpInicio;
-
-	@FXML
-	private DatePicker dpTermino;
-
-	@FXML
 	private Button btProx;
 
 	@FXML
@@ -122,8 +116,6 @@ public class FilmeController extends Controller<Filme> implements Initializable 
 		cbGenero.getSelectionModel().clearSelection();
 		tfProdutora.setText("");
 		tfDescricao.setText("");
-		dpInicio.setValue(null);
-		dpTermino.setValue(null);
 
 		filme = null;
 		tfTitulo.requestFocus();
@@ -140,8 +132,6 @@ public class FilmeController extends Controller<Filme> implements Initializable 
 		getFilme().setProdutora(tfProdutora.getText());
 		getFilme().getClassificacao();
 		getFilme().setDescricao(tfDescricao.getText());
-		getFilme().setDataInicio(dpInicio.getValue());
-		getFilme().setDataTermino(dpTermino.getValue());
 
 		super.save(getFilme());
 
@@ -158,8 +148,6 @@ public class FilmeController extends Controller<Filme> implements Initializable 
 		getFilme().setProdutora(tfProdutora.getText());
 		getFilme().getClassificacao();
 		getFilme().setDescricao(tfDescricao.getText());
-		getFilme().setDataInicio(dpInicio.getValue());
-		getFilme().setDataTermino(dpTermino.getValue());
 
 		super.save(getFilme());
     	
@@ -208,8 +196,6 @@ public class FilmeController extends Controller<Filme> implements Initializable 
 		tfDuracao.setText(getFilme().getDuracao());
 		tfProdutora.setText(getFilme().getProdutora());
 		tfDescricao.setText(getFilme().getDescricao());
-		dpInicio.setValue(getFilme().getDataInicio());
-		dpTermino.setValue(getFilme().getDataTermino());
 		
 		atualizarBotoes();
     }

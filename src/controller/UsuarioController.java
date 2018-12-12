@@ -85,7 +85,6 @@ public class UsuarioController extends Controller<Usuario> implements Initializa
 		getUsuario().setNome(tfNome.getText());
 		getUsuario().setCpf(tfCpf.getText());
 		getUsuario().setSenha(Util.encrypt(pfSenha.getText()));
-//		getUsuario().setSenha(Util.encrypt(tfSenha.getText()));
 		getUsuario().getPerfil();
 		
 		super.save(getUsuario());

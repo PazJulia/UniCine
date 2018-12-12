@@ -57,7 +57,6 @@ public class TemplateController implements Initializable {
 		catch (IOException e1) {
 			e1.printStackTrace();
 		}
-		
 
 	}
 	
@@ -89,7 +88,7 @@ public class TemplateController implements Initializable {
 	@FXML
 	void HandleVenda(ActionEvent event) throws IOException {
 		Main.trocaTela(5);
-		titulo.setText("Venda");
+		titulo.setText("COMPRA");
 	}
 
 	public Filme getfilme() {

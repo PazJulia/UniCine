@@ -52,7 +52,7 @@ public class Main extends Application {// UniCine
 		} else if (numero == 4) {
 			clienteView = FXMLLoader.load(Main.class.getResource("/view/CadastroUsuario.fxml"));
 		} else if (numero == 5) {
-			clienteView = FXMLLoader.load(Main.class.getResource("/view/EcolherFilme.fxml"));
+			clienteView = FXMLLoader.load(Main.class.getResource("/view/CompraIngresso.fxml"));
 		}
 		
 

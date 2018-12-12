@@ -23,7 +23,7 @@
                      <children>
                         <ImageView fx:id="labelUsuario" fitHeight="34.0" fitWidth="99.0" layoutX="56.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@iconeFCinza.png" />
+                              <Image url="@../resources/iconeFCinza.png" />
                            </image>
                         </ImageView>
                      </children>

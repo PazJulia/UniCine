@@ -48,9 +48,19 @@ public class SessaoRepository extends Repository<Sessao>{
 //		return lista;
 //	}
 	
+/*	public List<Sessao> getListSessoes(Filme titulo){        //////////////////// Antes tentativa 11/12/2018
+		Query query = getEntityManager().createQuery("SELECT s FROM Sessao s");
+		
+		List<Sessao> lista = query.getResultList();
+		
+		if(lista == null) {
+			lista = new ArrayList<Sessao>();
+		}
+		return lista;
+	}*/
+	
 	public List<Sessao> getListSessoes(Filme titulo){
 		Query query = getEntityManager().createQuery("SELECT s FROM Sessao s");
-//													+ "WHERE lower(c.titulo) like lower(:titulo)");
 		
 		List<Sessao> lista = query.getResultList();
 		
@@ -60,11 +70,6 @@ public class SessaoRepository extends Repository<Sessao>{
 		return lista;
 	}
 	
-	
-//	public static void main(String[] args) {
-//		SessaoRepository repo = new SessaoRepository(JPAFactory.getEntityManager());
-//		System.out.println(repo.dataDoBanco());
-//	}
 	
 	
 	public boolean existeSessaoDisponivel(Integer idSala, LocalDate dia, Time horaInicial) {
@@ -90,4 +95,10 @@ public class SessaoRepository extends Repository<Sessao>{
 		return false;
 	}
 	
+//	public static void main(String[] args) {
+//		SessaoRepository repo = new SessaoRepository(JPAFactory.getEntityManager());
+//		System.out.println(repo.dataDoBanco());
+//	}
+
 }
+

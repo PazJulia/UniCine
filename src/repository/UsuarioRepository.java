@@ -45,4 +45,25 @@ public class UsuarioRepository extends Repository<Usuario> {
 		}
 		return lista;
 	}
+	
+	 public Usuario getUsuario(String login, String senha) {
+		 Query query = 
+		 getEntityManager().
+		 createQuery("SELECT "
+		  + "  u "
+		  + "FROM "
+		  + "  Usuario u "
+		  + "WHERE "
+		  + "  u.cpf = :login AND u.senha = :senha");
+		 query.setParameter("login", login);
+		 query.setParameter("senha", senha);
+
+		 List<Usuario> lista = query.getResultList();
+
+		 if (lista == null || lista.isEmpty())
+		 return null;
+
+		 return lista.get(0);
+		 }
+	
 }

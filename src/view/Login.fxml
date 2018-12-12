@@ -17,12 +17,12 @@
    <children>
       <ImageView fitHeight="414.0" fitWidth="389.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@FundoLogin.png" />
+            <Image url="@../resources/FundoLogin.png" />
          </image>
       </ImageView>
       <ImageView fitHeight="62.0" fitWidth="152.0" layoutX="114.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@iconeFBranco.png" />
+            <Image url="@../resources/iconeFBranco.png" />
          </image>
       </ImageView>
       <Label layoutX="75.0" layoutY="125.0" text="Usuário:" textFill="#556683">

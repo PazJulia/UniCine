@@ -1,8 +1,5 @@
 package model;
 
-import java.time.LocalDate;
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
@@ -18,18 +15,18 @@ public class Filme extends DefaultEntity<Filme> {
 	private int classificacao;
 	private String descricao;
 
-	@Column(columnDefinition = "Date")
-	private LocalDate dataInicio;
-
-	@Column(columnDefinition = "Date")
-	private LocalDate dataTermino;
+//	@Column(columnDefinition = "Date")
+//	private LocalDate dataInicio;
+//
+//	@Column(columnDefinition = "Date")
+//	private LocalDate dataTermino;
 
 	public Filme() {
 
 	}
 
 	public Filme(String titulo, String diretor, String duracao, String elenco, GeneroFilme genero, String produtora,
-			int classificacao, String descricao, LocalDate dataInicio, LocalDate dataTermino) {
+			int classificacao, String descricao) {
 		this.titulo = titulo;
 		this.diretor = diretor;
 		this.duracao = duracao;
@@ -121,21 +118,21 @@ public class Filme extends DefaultEntity<Filme> {
 		this.descricao = descricao;
 	}
 
-	public LocalDate getDataTermino() {
-		return dataTermino;
-	}
-
-	public void setDataTermino(LocalDate dataTermino) {
-		this.dataTermino = dataTermino;
-	}
-
-	public LocalDate getDataInicio() {
-		return dataInicio;
-	}
-
-	public void setDataInicio(LocalDate dataInicio) {
-		this.dataInicio = dataInicio;
-	}
+//	public LocalDate getDataTermino() {
+//		return dataTermino;
+//	}
+//
+//	public void setDataTermino(LocalDate dataTermino) {
+//		this.dataTermino = dataTermino;
+//	}
+//
+//	public LocalDate getDataInicio() {
+//		return dataInicio;
+//	}
+//
+//	public void setDataInicio(LocalDate dataInicio) {
+//		this.dataInicio = dataInicio;
+//	}
 	
     public String toString() {
         return this.getTitulo();

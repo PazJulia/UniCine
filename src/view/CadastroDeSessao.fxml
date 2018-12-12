@@ -111,7 +111,7 @@
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@iconeBusca.png" />
+                              <Image url="@../resources/iconeBusca.png" />
                            </image>
                         </ImageView>
                      </graphic>
