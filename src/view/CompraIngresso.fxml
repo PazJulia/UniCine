@@ -3,13 +3,12 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="860.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CompraController">
+<AnchorPane prefHeight="964.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CompraController">
    <children>
       <AnchorPane prefHeight="38.0" prefWidth="750.0" style="-fx-background-color: e3f1f6ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -26,7 +25,7 @@
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@iconeBuscaCinza.png" />
+                        <Image url="@../resources/iconeBuscaCinza.png" />
                      </image>
                   </ImageView>
                </graphic>
@@ -38,31 +37,34 @@
       </AnchorPane>
       <TableView fx:id="tvSessao" layoutY="81.0" prefHeight="220.0" prefWidth="750.0" style="-fx-background-color: gray;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
          <columns>
-            <TableColumn fx:id="tcNomeFilme" prefWidth="213.0" text="Nome do Filme" />
-            <TableColumn fx:id="tcDataExibicao" prefWidth="105.0" text="Data" />
+            <TableColumn fx:id="tcId" prefWidth="42.0" text="ID" />
+            <TableColumn fx:id="tcNomeFilme" prefWidth="209.0" text="Nome do Filme" />
+            <TableColumn fx:id="tcDataExibicao" prefWidth="94.0" text="Data" />
             <TableColumn fx:id="tcHoraInicio" prefWidth="104.0" text="Hora de Início" />
-            <TableColumn fx:id="tcHoraTermino" minWidth="0.0" prefWidth="103.0" text="Hora de Término" />
-            <TableColumn fx:id="tcNomeSala" prefWidth="124.0" text="Nome da Sala" />
-            <TableColumn fx:id="tcQtPoltronas" prefWidth="100.0" text="Qtd. Poltronas" />
+            <TableColumn fx:id="tcHoraTermino" minWidth="0.0" prefWidth="116.0" text="Hora de Término" />
+            <TableColumn fx:id="tcNomeSala" prefWidth="97.0" text="Nome da Sala" />
+            <TableColumn fx:id="tcQtPoltronas" prefWidth="85.0" text="Qtd. Poltronas" />
          </columns>
       </TableView>
-      <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="255.0" prefHeight="353.0" prefWidth="750.0" spacing="20.0" AnchorPane.bottomAnchor="252.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+      <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="255.0" prefHeight="420.0" prefWidth="750.0" spacing="20.0" AnchorPane.bottomAnchor="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
          <children>
+            <Label text="ID da Sessão:">
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+            </Label>
+            <HBox alignment="CENTER" prefHeight="19.0" prefWidth="750.0" spacing="10.0">
+               <children>
+                  <ComboBox fx:id="cbIdSessao" prefWidth="150.0" />
+               </children>
+            </HBox>
+            <Separator layoutX="10.0" layoutY="105.0" prefWidth="200.0" />
             <Label text="Tipo de Ingresso:">
                <font>
                   <Font name="Segoe UI Black" size="12.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER" prefHeight="18.0" prefWidth="750.0" spacing="20.0">
-               <children>
-                  <RadioButton mnemonicParsing="false" selected="true" text="Inteira">
-                     <toggleGroup>
-                        <ToggleGroup fx:id="TipoIngresso" />
-                     </toggleGroup>
-                  </RadioButton>
-                  <RadioButton fx:id="rdTipo" mnemonicParsing="false" text="Meia" toggleGroup="$TipoIngresso" />
-               </children>
-            </HBox>
+            <ComboBox fx:id="cbTipoIngresso" prefWidth="150.0" />
             <Separator prefWidth="200.0" />
             <Label text="Poltrona:">
                <font>
@@ -73,32 +75,38 @@
                <children>
                   <HBox alignment="CENTER" layoutX="-3.0" prefHeight="19.0" prefWidth="750.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <TextField />
-                        <Button fx:id="btConfirmar" mnemonicParsing="false" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #00FA9A;" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font name="Segoe UI Black" size="12.0" />
-                           </font>
-                           <graphic>
-                              <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@check.png" />
-                                 </image>
-                              </ImageView>
-                           </graphic>
-                        </Button>
+                        <TextField fx:id="tfPoltrona" />
                      </children>
                   </HBox>
                </children>
             </AnchorPane>
-            <Separator layoutX="10.0" layoutY="105.0" prefWidth="200.0" />
-            <Label text="Total a pagar:">
+            <Button fx:id="btConfirmar" mnemonicParsing="false" onAction="#handleAdicionar" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #00FA9A;" textFill="WHITE">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <font>
+                  <Font name="Segoe UI Black" size="12.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../resources/check.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Separator layoutX="10.0" layoutY="217.0" prefWidth="200.0" />
+            <Label fx:id="lb" text="Total a pagar:" textFill="#31a8d7">
+               <font>
+                  <Font name="Segoe UI Black" size="18.0" />
+               </font>
+            </Label>
+            <Label text="Método de pagamento:">
                <font>
                   <Font name="Segoe UI Black" size="12.0" />
                </font>
             </Label>
+            <ComboBox fx:id="cbPagamento" prefWidth="150.0" />
             <HBox alignment="CENTER" prefHeight="29.0" prefWidth="750.0" spacing="10.0">
                <children>
                   <Button fx:id="btPagar" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #87CEEB;" text="Pagar" textFill="WHITE">
@@ -124,7 +132,7 @@
             <Insets top="20.0" />
          </padding>
       </VBox>
-      <TableView fx:id="tvIntensCompra" layoutY="669.0" prefHeight="108.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="680.0">
+      <TableView fx:id="tvIntensCompra" layoutY="891.0" prefHeight="213.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="891.0">
          <columns>
             <TableColumn fx:id="tcIdCompra" prefWidth="75.0" text="ID Compra" />
             <TableColumn fx:id="tcFilmeCompra" prefWidth="285.0" text="Filme" />
@@ -133,7 +141,7 @@
             <TableColumn fx:id="tcTipo" prefWidth="137.0" text="Tipo" />
          </columns>
       </TableView>
-      <HBox alignment="CENTER" layoutY="609.0" prefHeight="71.0" prefWidth="750.0" style="-fx-background-color: e3f1f6ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER" layoutY="835.0" prefHeight="56.0" prefWidth="750.0" style="-fx-background-color: e3f1f6ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <Label text="Itens de Compra" textFill="GREY">
                <font>

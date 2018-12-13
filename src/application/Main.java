@@ -1,5 +1,5 @@
 package application;
-
+//testeeeee
 import java.io.IOException;
 
 import javax.persistence.EntityManager;
@@ -23,19 +23,7 @@ public class Main extends Application {// UniCine
 
 	public static void main(String[] args) {
 		launch(args);
-/*		try {
-			Usuario user = new Usuario();
-			user.setId(1);
-			user.setLogin("Julieta");
-			user.setSenha("123");
-			EntityManager em = JPAFactory.getEntityManager();
-			em.getTransaction().begin();
-			em.persist(user);
-			em.getTransaction().commit();
-			em.close();
-		} catch (Exception e) {
-			System.out.println("Usuario adicionado: Julieta\nSenha: 123");
-		}*/
+
 	}
 
 	public static void trocaTela(int numero) throws IOException {

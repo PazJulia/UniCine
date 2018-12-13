@@ -1,8 +1,10 @@
 package model;
 
+import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+@Entity
 public class Compra extends DefaultEntity<Compra>{
 
 	/**
@@ -15,7 +17,8 @@ public class Compra extends DefaultEntity<Compra>{
 	@JoinColumn(name = "idSessao")
 	private Sessao idSessao;
 	private TipoIngresso tipoIngresso;
-	private int poltrona = 50;
+	private int poltrona;
+	private TipoPagamento tipoPagamento;
 	
 	
 	public Sessao getIdSessao() {
@@ -36,5 +39,13 @@ public class Compra extends DefaultEntity<Compra>{
 	public void setPoltrona(int poltrona) {
 		this.poltrona = poltrona;
 	}
+	public TipoPagamento getTipoPagamento() {
+		return tipoPagamento;
+	}
+	public void setTipoPagamento(TipoPagamento tipoPagamento) {
+		this.tipoPagamento = tipoPagamento;
+	}
 	
+	
+
 }

@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListCell;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -22,15 +24,19 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Compra;
 import model.Filme;
+import model.GeneroFilme;
 import model.Sessao;
 import model.TipoIngresso;
+import model.TipoPagamento;
 import repository.SessaoRepository;
 
-public class CompraController implements Initializable{
+public class CompraController extends Controller<Compra> implements Initializable{
 
 	private Sessao sessao;
 	
 	private Filme filme;
+	
+	private Compra compra;
 	
 	@FXML
     private TextField tfBuscaSessao;
@@ -60,12 +66,6 @@ public class CompraController implements Initializable{
     private TableColumn<Compra, Integer> tcQtPoltronas;
 
     @FXML
-    private ToggleGroup TipoIngresso;
-
-    @FXML
-    private RadioButton rdTipo;
-
-    @FXML
     private Button btConfirma;
 
     @FXML
@@ -79,6 +79,9 @@ public class CompraController implements Initializable{
 
     @FXML
     private TableView<Compra> tvIntensCompra;
+    
+    @FXML
+    private TableColumn<Compra, Integer> tcId;
 
     @FXML
     private TableColumn<Compra, Integer> tcIdCompra;
@@ -94,9 +97,25 @@ public class CompraController implements Initializable{
 
     @FXML
     private TableColumn<Compra, TipoIngresso> tcTipo;
+    
+    @FXML
+    private ComboBox<TipoIngresso> cbTipoIngresso;
+    
+    @FXML
+    private ComboBox<TipoPagamento> cbPagamento;
+
+    
+    @FXML
+    private TextField tfPoltrona;
+    
+    @FXML
+    private TextField tfSessao;
+    
+
 	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
+		tcId.setCellValueFactory(new PropertyValueFactory<>("id"));
     	tcNomeFilme.setCellValueFactory(new PropertyValueFactory<>("filme"));
     	tcNomeSala.setCellValueFactory(new PropertyValueFactory<>("sala"));
     	tcDataExibicao.setCellValueFactory(new PropertyValueFactory<>("dataExibicao"));
@@ -104,7 +123,76 @@ public class CompraController implements Initializable{
     	tcHoraTermino.setCellValueFactory(new PropertyValueFactory<>("horaTermino"));
     	tcQtPoltronas.setCellValueFactory(new PropertyValueFactory<>("poltronas"));
     	
-    	 buscarSessao();
+    	buscarSessao();
+    	
+    	
+    	cbTipoIngresso.getItems().addAll(TipoIngresso.values());
+		
+    	cbTipoIngresso.setCellFactory(c -> new ListCell<TipoIngresso>() {
+			@Override
+			protected void updateItem(TipoIngresso item, boolean empty) {
+				super.updateItem(item, empty);
+				
+				if (item == null || empty)
+					setText(null);
+				else
+					setText(item.getLabel());
+			}
+		});
+		
+		// seobrescreendo o método que mostra o conteudo selecionado
+    	cbTipoIngresso.setButtonCell(new ListCell<TipoIngresso>() {
+			@Override
+			protected void updateItem(TipoIngresso item, boolean empty) {
+				super.updateItem(item, empty);
+				
+				if (item == null || empty)
+					setText(null);
+				else
+					setText(item.getLabel());
+			}
+		});
+    	
+    	cbPagamento.getItems().addAll(TipoPagamento.values());
+    	
+    	cbPagamento.setCellFactory(c -> new ListCell<TipoPagamento>() {
+			@Override
+			protected void updateItem(TipoPagamento item, boolean empty) {
+				super.updateItem(item, empty);
+				
+				if (item == null || empty)
+					setText(null);
+				else
+					setText(item.getLabel());
+			}
+		});
+		
+		// seobrescreendo o método que mostra o conteudo selecionado
+    	cbPagamento.setButtonCell(new ListCell<TipoPagamento>() {
+			@Override
+			protected void updateItem(TipoPagamento item, boolean empty) {
+				super.updateItem(item, empty);
+				
+				if (item == null || empty)
+					setText(null);
+				else
+					setText(item.getLabel());
+			}
+		});
+	}
+	
+	
+	
+	@FXML
+	void handleAdicionar(ActionEvent event) {
+		getCompra().setIdSessao(null);
+		getCompra().setTipoIngresso(cbTipoIngresso.getValue());
+		getCompra().setPoltrona(Integer.parseInt(tfPoltrona.getText()));
+		getCompra().setTipoPagamento(null);
+
+		super.save(getCompra());
+
+//		handleLimpar(event);
 	}
 
 	public Sessao getSessao() {
@@ -129,4 +217,12 @@ public class CompraController implements Initializable{
 
 		tvSessao.setItems(FXCollections.observableList(lista));
     }
+
+	public Compra getCompra() {
+		return compra;
+	}
+
+	public void setCompra(Compra compra) {
+		this.compra = compra;
+	}
 }

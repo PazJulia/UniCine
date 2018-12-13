@@ -60,6 +60,12 @@ public class TemplateController implements Initializable {
 
 	}
 	
+    @FXML
+    void handleBloquear(ActionEvent event) throws IOException {
+    	abrirTelaLogin();
+    }
+
+	
 	@FXML
 	void HandleCadastroFilme(ActionEvent event) throws IOException {
 		Main.trocaTela(1);
@@ -110,10 +116,5 @@ public class TemplateController implements Initializable {
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
-	
-	@FXML
-    void handleBloquear(ActionEvent event) {
-		abrirTelaLogin();
-    }
 
 }
