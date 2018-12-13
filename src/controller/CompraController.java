@@ -3,11 +3,15 @@ package controller;
 import java.net.URL;
 import java.sql.Time;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import factory.JPAFactory;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -17,14 +21,17 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.util.Callback;
 import model.Compra;
 import model.Filme;
 import model.GeneroFilme;
+import model.Ingresso;
 import model.Sessao;
 import model.TipoIngresso;
 import model.TipoPagamento;
@@ -46,24 +53,27 @@ public class CompraController extends Controller<Compra> implements Initializabl
 
     @FXML
     private TableView<Sessao> tvSessao;
+    
+    @FXML
+    private TableColumn<Sessao, Integer> tcId;
+    
+    @FXML
+    private TableColumn<Sessao, String> tcNomeFilme;
 
     @FXML
-    private TableColumn<Compra, String> tcNomeFilme;
+    private TableColumn<Sessao, LocalDate> tcDataExibicao;
 
     @FXML
-    private TableColumn<Compra, LocalDate> tcDataExibicao;
+    private TableColumn<Sessao, Time> tcHoraInicio;
 
     @FXML
-    private TableColumn<Compra, Time> tcHoraInicio;
+    private TableColumn<Sessao, Time> tcHoraTermino;
 
     @FXML
-    private TableColumn<Compra, Time> tcHoraTermino;
+    private TableColumn<Sessao, String> tcNomeSala;
 
     @FXML
-    private TableColumn<Compra, String> tcNomeSala;
-
-    @FXML
-    private TableColumn<Compra, Integer> tcQtPoltronas;
+    private TableColumn<Sessao, Integer> tcQtPoltronas;
 
     @FXML
     private Button btConfirma;
@@ -78,38 +88,37 @@ public class CompraController extends Controller<Compra> implements Initializabl
     private Button btCancelar;
 
     @FXML
-    private TableView<Compra> tvIntensCompra;
-    
-    @FXML
-    private TableColumn<Compra, Integer> tcId;
+    private TableView<Ingresso> tvIntensCompra;
 
     @FXML
-    private TableColumn<Compra, Integer> tcIdCompra;
+    private TableColumn<Ingresso, Integer> tcSesssaoCompra;
 
     @FXML
-    private TableColumn<Compra, String> tcFilmeCompra;
+    private TableColumn<Ingresso, TipoIngresso> tcTipoIngressoCompra;
 
     @FXML
-    private TableColumn<Compra, LocalDate> tcDataSessaoCompra;
+    private TableColumn<Ingresso, Integer> tcQtdIngressoCompra;
 
     @FXML
-    private TableColumn<Compra, Time> tcHorarioCompra;
-
-    @FXML
-    private TableColumn<Compra, TipoIngresso> tcTipo;
+    private TableColumn<Ingresso, String> tcPoltronaCompra;
     
     @FXML
     private ComboBox<TipoIngresso> cbTipoIngresso;
     
     @FXML
     private ComboBox<TipoPagamento> cbPagamento;
-
+    
+    @FXML
+    private ComboBox<Sessao> cbSessao;
     
     @FXML
     private TextField tfPoltrona;
     
     @FXML
     private TextField tfSessao;
+
+    @FXML
+    private TextField tfQuantidade;
     
 
 	
@@ -125,6 +134,10 @@ public class CompraController extends Controller<Compra> implements Initializabl
     	
     	buscarSessao();
     	
+    	tcSesssaoCompra.setCellValueFactory(new PropertyValueFactory<>("idSessao"));
+    	tcQtdIngressoCompra.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+    	tcTipoIngressoCompra.setCellValueFactory(new PropertyValueFactory<>("tipoIngresso"));
+    	tcPoltronaCompra.setCellValueFactory(new PropertyValueFactory<>("poltrona"));
     	
     	cbTipoIngresso.getItems().addAll(TipoIngresso.values());
 		
@@ -179,21 +192,50 @@ public class CompraController extends Controller<Compra> implements Initializabl
 					setText(item.getLabel());
 			}
 		});
+    	
+    	carregaComboBoxSessao();
 	}
-	
-	
 	
 	@FXML
-	void handleAdicionar(ActionEvent event) {
-		getCompra().setIdSessao(null);
-		getCompra().setTipoIngresso(cbTipoIngresso.getValue());
-		getCompra().setPoltrona(Integer.parseInt(tfPoltrona.getText()));
-		getCompra().setTipoPagamento(null);
+	void handleAdicionarIngresso(ActionEvent event) {
+		Ingresso ingresso = new Ingresso();
+		ingresso.setIdSessao(cbSessao.getValue());
+		ingresso.setCompra(getCompra());
+		ingresso.setTipoIngresso(cbTipoIngresso.getValue());
+		ingresso.setPoltrona(tfPoltrona.getText());
+		ingresso.setQuantidade(Integer.parseInt(tfQuantidade.getText()));
 
-		super.save(getCompra());
+		if (getCompra().getListaIngresso() == null)
+			getCompra().setListaIngresso(new ArrayList<Ingresso>());
 
-//		handleLimpar(event);
+		getCompra().getListaIngresso().add(ingresso);
+
+		tvIntensCompra.setItems(FXCollections.observableList(getCompra().getListaIngresso()));
+		
+		//Limpar campos
+		cbTipoIngresso.setValue(null);
+		tfPoltrona.setText(null);
 	}
+	
+
+    @FXML
+    void handleFinalizarCompra(ActionEvent event) {
+    	getCompra().setTipoPagamento(cbPagamento.getValue());
+
+    	super.save(getCompra());
+    	Alert alerta = new Alert(AlertType.INFORMATION);
+		alerta.setTitle("Informação");
+		alerta.setHeaderText(null);
+		alerta.setContentText("Compra realizada com sucesso!");
+		alerta.show();
+		
+		cbPagamento.setValue(null);
+		tvIntensCompra.getItems().clear();
+    	
+    	Alert alert = new Alert(AlertType.INFORMATION);
+		alert.setTitle("Compra realizada");
+		alert.setHeaderText("Sua compra foi realizada com sucesso");
+    }
 
 	public Sessao getSessao() {
 		return sessao;
@@ -217,8 +259,18 @@ public class CompraController extends Controller<Compra> implements Initializabl
 
 		tvSessao.setItems(FXCollections.observableList(lista));
     }
+    
+    public void carregaComboBoxSessao(){
+    	SessaoRepository repository = new SessaoRepository(JPAFactory.getEntityManager());
+		List<Sessao> lista = repository.getSessoes();
+		
+		cbSessao.setItems(FXCollections.observableList(lista));
+
+    }
 
 	public Compra getCompra() {
+		if (compra == null)
+			compra = new Compra();
 		return compra;
 	}
 

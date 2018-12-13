@@ -1,51 +1,64 @@
 package model;
 
+import java.time.LocalDate;
+import java.util.List;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Compra extends DefaultEntity<Compra>{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1800164396704812722L;
 	
-
-	@ManyToOne
-	@JoinColumn(name = "idSessao")
-	private Sessao idSessao;
-	private TipoIngresso tipoIngresso;
-	private int poltrona;
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "compra")
+	private List<Ingresso> listaIngresso;
+	
 	private TipoPagamento tipoPagamento;
 	
+	private Double valorTotalCompra;
 	
-	public Sessao getIdSessao() {
-		return idSessao;
+	public Compra() {
+
 	}
-	public void setIdSessao(Sessao idSessao) {
-		this.idSessao = idSessao;
+
+	public Compra(List<Ingresso> listaIngresso, TipoPagamento tipoPagamento,
+			Double valorTotalCompra) {
+		super();
+		this.listaIngresso = listaIngresso;
+		this.tipoPagamento = tipoPagamento;
+		this.valorTotalCompra = valorTotalCompra;
 	}
-	public TipoIngresso getTipoIngresso() {
-		return tipoIngresso;
+
+	public List<Ingresso> getListaIngresso() {
+		return listaIngresso;
 	}
-	public void setTipoIngresso(TipoIngresso tipoIngresso) {
-		this.tipoIngresso = tipoIngresso;
+
+
+	public void setListaIngresso(List<Ingresso> listaIngresso) {
+		this.listaIngresso = listaIngresso;
 	}
-	public int getPoltrona() {
-		return poltrona;
-	}
-	public void setPoltrona(int poltrona) {
-		this.poltrona = poltrona;
-	}
+
 	public TipoPagamento getTipoPagamento() {
 		return tipoPagamento;
 	}
+
+
 	public void setTipoPagamento(TipoPagamento tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;
 	}
-	
-	
 
+
+	public Double getValorTotalCompra() {
+		return valorTotalCompra;
+	}
+
+	public void setValorTotalCompra(Double valorTotalCompra) {
+		this.valorTotalCompra = valorTotalCompra;
+	}	
 }

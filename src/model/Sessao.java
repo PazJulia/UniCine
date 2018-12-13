@@ -32,6 +32,15 @@ public class Sessao extends DefaultEntity<Sessao>{
 	
 	private Time horaTermino;
 	
+	private Integer idsesao;
+
+	public Integer getIdsesao() {
+		return idsesao;
+	}
+
+	public void setIdsesao(Integer idsesao) {
+		this.idsesao = idsesao;
+	}
 
 	public LocalDate getDataExibicao() {
 		return dataExibicao;
@@ -72,4 +81,14 @@ public class Sessao extends DefaultEntity<Sessao>{
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
+
+	@Override
+	public String toString() {
+		return 	"FILME: " + getFilme().getTitulo().toString() + " - " + 
+				"DIA..: " + getDataExibicao().toString() + "\n" + " - " +
+				"HORA.: " + getHoraInicio().toString() + "\n" + " - " +
+				"SALA.: " + getSala().getNomeSala() + "\n" + " - ";
+	}
+	
+	
 }

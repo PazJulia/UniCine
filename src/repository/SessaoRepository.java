@@ -95,6 +95,28 @@ public class SessaoRepository extends Repository<Sessao>{
 		return false;
 	}
 	
+/*	public List<Integer> getSessoes(){
+		Query query = getEntityManager().createQuery("SELECT s.id FROM Sessao s");
+		
+		List<Integer> lista = query.getResultList();
+		
+		if(lista == null) {
+			lista = new ArrayList<Integer>();
+		}
+		return lista;
+	}*/
+	
+	public List<Sessao> getSessoes(){
+		Query query = getEntityManager().createQuery("SELECT s FROM Sessao s");
+		
+		List<Sessao> lista = query.getResultList();
+		
+		if(lista == null) {
+			lista = new ArrayList<Sessao>();
+		}
+		return lista;
+	}
+	
 //	public static void main(String[] args) {
 //		SessaoRepository repo = new SessaoRepository(JPAFactory.getEntityManager());
 //		System.out.println(repo.dataDoBanco());

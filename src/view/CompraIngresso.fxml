@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="964.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CompraController">
+<AnchorPane prefHeight="904.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.CompraController">
    <children>
       <AnchorPane prefHeight="38.0" prefWidth="750.0" style="-fx-background-color: e3f1f6ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
@@ -46,56 +46,81 @@
             <TableColumn fx:id="tcQtPoltronas" prefWidth="85.0" text="Qtd. Poltronas" />
          </columns>
       </TableView>
-      <VBox alignment="TOP_CENTER" layoutX="6.0" layoutY="255.0" prefHeight="420.0" prefWidth="750.0" spacing="20.0" AnchorPane.bottomAnchor="317.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
+      <VBox alignment="TOP_CENTER" layoutY="255.0" prefHeight="258.0" prefWidth="750.0" spacing="20.0" AnchorPane.bottomAnchor="456.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="255.0">
          <children>
-            <Label text="ID da Sessão:">
-               <font>
-                  <Font name="Segoe UI Black" size="12.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER" prefHeight="19.0" prefWidth="750.0" spacing="10.0">
+            <VBox alignment="CENTER" prefHeight="25.0" prefWidth="750.0">
                <children>
-                  <ComboBox fx:id="cbIdSessao" prefWidth="150.0" />
+                  <Label text="Sessão:">
+                     <font>
+                        <Font name="Segoe UI Black" size="12.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="cbSessao" prefHeight="25.0" prefWidth="706.0" />
+               </children>
+            </VBox>
+            <HBox alignment="CENTER" prefHeight="66.0" prefWidth="750.0" spacing="10.0">
+               <children>
+                  <VBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="67.0" prefWidth="150.0">
+                     <children>
+                        <Label text="Tipo de Ingresso:">
+                           <font>
+                              <Font name="Segoe UI Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <ComboBox fx:id="cbTipoIngresso" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="171.0" layoutY="10.0" prefHeight="78.0" prefWidth="150.0">
+                     <children>
+                        <Label text="Poltrona:">
+                           <font>
+                              <Font name="Segoe UI Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfPoltrona" prefHeight="25.0" prefWidth="150.0" />
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" layoutX="466.0" layoutY="10.0" prefHeight="78.0" prefWidth="150.0">
+                     <children>
+                        <Label text="Quantidade de Ingressos">
+                           <font>
+                              <Font name="Segoe UI Black" size="12.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="tfQuantidade" prefHeight="25.0" prefWidth="101.0" />
+                     </children>
+                  </VBox>
                </children>
             </HBox>
-            <Separator layoutX="10.0" layoutY="105.0" prefWidth="200.0" />
-            <Label text="Tipo de Ingresso:">
-               <font>
-                  <Font name="Segoe UI Black" size="12.0" />
-               </font>
-            </Label>
-            <ComboBox fx:id="cbTipoIngresso" prefWidth="150.0" />
-            <Separator prefWidth="200.0" />
-            <Label text="Poltrona:">
-               <font>
-                  <Font name="Segoe UI Black" size="12.0" />
-               </font>
-            </Label>
-            <AnchorPane prefHeight="22.0" prefWidth="750.0">
-               <children>
-                  <HBox alignment="CENTER" layoutX="-3.0" prefHeight="19.0" prefWidth="750.0" spacing="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                     <children>
-                        <TextField fx:id="tfPoltrona" />
-                     </children>
-                  </HBox>
-               </children>
-            </AnchorPane>
-            <Button fx:id="btConfirmar" mnemonicParsing="false" onAction="#handleAdicionar" prefHeight="25.0" prefWidth="31.0" style="-fx-background-color: #00FA9A;" textFill="WHITE">
+            <Button fx:id="btConfirmar" mnemonicParsing="false" onAction="#handleAdicionarIngresso" prefHeight="25.0" prefWidth="154.0" style="-fx-background-color: #00FA9A;" text="Adicionar ao carrinho" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
                   <Font name="Segoe UI Black" size="12.0" />
                </font>
-               <graphic>
-                  <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../resources/check.png" />
-                     </image>
-                  </ImageView>
-               </graphic>
             </Button>
             <Separator layoutX="10.0" layoutY="217.0" prefWidth="200.0" />
+            <Label text="Itens de Compra" textFill="GREY">
+               <font>
+                  <Font name="Segoe UI Black" size="23.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets top="20.0" />
+         </padding>
+      </VBox>
+      <VBox alignment="CENTER" layoutY="530.0" prefHeight="354.0" prefWidth="750.0" spacing="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <TableView fx:id="tvIntensCompra">
+               <columns>
+                  <TableColumn fx:id="tcSesssaoCompra" prefWidth="492.0" text="Sessão" />
+                  <TableColumn fx:id="tcTipoIngressoCompra" prefWidth="78.0" text="Tipo" />
+                  <TableColumn fx:id="tcQtdIngressoCompra" prefWidth="94.0" text="Qtd. Ingresso" />
+                  <TableColumn fx:id="tcPoltronaCompra" prefWidth="85.0" text="Poltrona" />
+               </columns>
+            </TableView>
             <Label fx:id="lb" text="Total a pagar:" textFill="#31a8d7">
                <font>
                   <Font name="Segoe UI Black" size="18.0" />
@@ -109,7 +134,7 @@
             <ComboBox fx:id="cbPagamento" prefWidth="150.0" />
             <HBox alignment="CENTER" prefHeight="29.0" prefWidth="750.0" spacing="10.0">
                <children>
-                  <Button fx:id="btPagar" mnemonicParsing="false" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #87CEEB;" text="Pagar" textFill="WHITE">
+                  <Button fx:id="btPagar" mnemonicParsing="false" onAction="#handleFinalizarCompra" prefHeight="25.0" prefWidth="77.0" style="-fx-background-color: #87CEEB;" text="Pagar" textFill="WHITE">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
@@ -129,26 +154,8 @@
             </HBox>
          </children>
          <padding>
-            <Insets top="20.0" />
+            <Insets bottom="20.0" />
          </padding>
       </VBox>
-      <TableView fx:id="tvIntensCompra" layoutY="891.0" prefHeight="213.0" prefWidth="750.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="891.0">
-         <columns>
-            <TableColumn fx:id="tcIdCompra" prefWidth="75.0" text="ID Compra" />
-            <TableColumn fx:id="tcFilmeCompra" prefWidth="285.0" text="Filme" />
-            <TableColumn fx:id="tcDataSessaoCompra" prefWidth="124.0" text="Data Sessão" />
-            <TableColumn fx:id="tcHorarioCompra" prefWidth="128.0" text="Horário do Filme" />
-            <TableColumn fx:id="tcTipo" prefWidth="137.0" text="Tipo" />
-         </columns>
-      </TableView>
-      <HBox alignment="CENTER" layoutY="835.0" prefHeight="56.0" prefWidth="750.0" style="-fx-background-color: e3f1f6ff;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-         <children>
-            <Label text="Itens de Compra" textFill="GREY">
-               <font>
-                  <Font name="Segoe UI Black" size="23.0" />
-               </font>
-            </Label>
-         </children>
-      </HBox>
    </children>
 </AnchorPane>

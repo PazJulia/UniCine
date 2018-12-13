@@ -1,8 +1,8 @@
 package model;
 
 public enum Perfil {
-	ADMINISTRADOR(0, "Adminstrador"),
-	CADASTRO(1, "Cadastro");
+	ADMINISTRADOR(0, "Administrador"),
+	VENDEDOR(1, "Vendedor");
 	
 	private int id;
 	private String label;

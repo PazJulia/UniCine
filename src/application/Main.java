@@ -1,10 +1,7 @@
 package application;
-//testeeeee
+
 import java.io.IOException;
 
-import javax.persistence.EntityManager;
-
-import factory.JPAFactory;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
@@ -15,7 +12,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import model.Usuario;
 
 public class Main extends Application {// UniCine
 

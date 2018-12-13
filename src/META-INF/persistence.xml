@@ -10,6 +10,7 @@
 		<class>model.Sessao</class>
 		<class>model.Usuario</class>
 		<class>model.Compra</class>
+		<class>model.Ingresso</class>
 
 		<properties>
 			<property name="javax.persistence.jdbc.url"

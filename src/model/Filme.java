@@ -1,5 +1,6 @@
 package model;
 
+import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
 @Entity
